@@ -1,76 +1,176 @@
-
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#080d17">
+    <meta name="description" content="StudentAI Toolkit - Your AI-powered learning companion.">
+
+    <!-- Mobile Installation / PWA Support -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="StudentAI">
+
     <title>StudentAI Toolkit</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- External Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+
+    <link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
-    <div class="app">
-        <aside class="side">
-            <div class="brand">
-                <b>AI</b>
-                <div>
-                    <strong>StudentAI</strong>
-                    <small>10-in-1 learning toolkit</small>
-                </div>
-            </div>
-            <nav id="nav"></nav>
-        </aside>
 
-        <main>
-            <header>
-                <div>
-                    <small class="eyebrow">AI-POWERED STUDENT WORKSPACE</small>
-                    <h1 id="title">Dashboard</h1>
-                </div>
-                <span class="pill">● Gemini</span>
-            </header>
+<div class="app">
 
-            <div id="app"></div>
-        </main>
-    </div>
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="side" id="sidebar">
 
-    <!-- Developer Footer -->
-    <footer class="developer-footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h2>StudentAI Toolkit</h2>
-                <p>Empowering students with AI-powered learning tools.</p>
-            </div>
-
-            <div class="footer-developer">
-                <h3>Developed By</h3>
-                <p><strong>Vishal Kumar Yadav</strong></p>
-                <p>B.Tech Computer Science &amp; Engineering</p>
-                <p>Maharishi Markandeshwar University</p>
-                <a href="https://github.com/bishalyadav854"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    GitHub Profile ↗
-                </a>
+        <div class="brand">
+            <b>AI</b>
+            <div>
+                <strong>StudentAI</strong>
+                <small>10-in-1 learning toolkit</small>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <p>&copy; {% now "Y" %} Vishal Kumar Yadav. All rights reserved.</p>
-            <p>Built with ❤️ for smarter learning.</p>
-        </div>
-    </footer>
+        <!-- Mobile Hamburger -->
+        <button
+            type="button"
+            class="mobile-menu-toggle"
+            id="mobileMenuToggle"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-    <div id="toast"></div>
+        <!-- Dynamic Navigation -->
+        <nav id="nav"></nav>
 
-    <script src="{% static 'js/app.js' %}"></script>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main>
+
+        <header>
+            <div>
+                <small class="eyebrow">AI-POWERED STUDENT WORKSPACE</small>
+                <h1 id="title">Dashboard</h1>
+            </div>
+            <span class="pill">● Gemini</span>
+        </header>
+
+        <!-- Dynamic Dashboard / Tools -->
+        <div id="app"></div>
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="developer-footer">
+
+            <div class="footer-content">
+
+                <!-- BRAND -->
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <span>AI</span>
+                        <h2>StudentAI Toolkit</h2>
+                    </div>
+                    <p>Empowering students with smart AI-powered learning tools.</p>
+                    <p class="footer-tagline">Learn smarter. Create faster. Achieve more.</p>
+                </div>
+
+                <!-- DEVELOPER -->
+                <div class="footer-section">
+                    <h3>Developed By</h3>
+                    <h4>Bishal Kumar Yadav</h4>
+                    <p>B.Tech Computer Science &amp; Engineering</p>
+                    <p>Maharishi Markandeshwar University</p>
+                    <p>Full Stack Developer | AI Enthusiast</p>
+                </div>
+
+                <!-- SOCIAL MEDIA -->
+                <div class="footer-section">
+                    <h3>Connect With Me</h3>
+                    <p>Follow my work and connect with me.</p>
+
+                    <div class="social-links">
+                        <a href="https://github.com/bishalyadav854" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.facebook.com/https://www.facebook.com/bi.h.l.yadav?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/https://www.instagram.com/vishal_yadavzx?exln=bmdmYnh5OTlyMzF1/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="mailto:ssbishal1112@gmail.com" title="Email" aria-label="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+
+                    <p class="contact-label">
+                        <i class="fa-solid fa-envelope"></i>
+                        ssbishal1112@gmail.com
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- FOOTER BOTTOM -->
+            <div class="footer-bottom">
+                <p>&copy; {% now "Y" %} StudentAI Toolkit. All rights reserved.</p>
+                <p>Developed by Bishal kumar Yadav</p>
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- ================= TOAST ================= -->
+<div id="toast"></div>
+
+<!-- ================= MAIN JAVASCRIPT ================= -->
+<script src="{% static 'js/app.js' %}"></script>
+
+<!-- ================= SERVICE WORKER REGISTRATION ================= -->
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.warn('PWA service worker registration skipped:', err);
+        });
+    });
+}
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered successfully with scope:', reg.scope))
+            .catch(err => console.warn('Service Worker registration failed:', err));
+    });
+}
+</script>
 </body>
 </html>

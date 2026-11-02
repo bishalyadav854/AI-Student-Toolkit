@@ -1,6 +1,26 @@
-venv/
+# Environment & Secret Keys
 .env
+.env.local
+*.env
+
+# Python & Virtual Environments
+venv/
+env/
+ENV/
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# Database & Local Logs
+*.sqlite3
 db.sqlite3
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Static collection / cache
 staticfiles/
