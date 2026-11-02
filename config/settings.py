@@ -12,11 +12,24 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "dev-only-change-me")
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = [
+# Base trusted domains always allowed across local, Render, and Vercel
+DEFAULT_ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "[::1]",
+    ".onrender.com",
+    ".vercel.app",
+]
+
+# Parse any additional custom domains from environment variables (comma-separated)
+env_hosts = [
     host.strip()
-    for host in os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+    for host in os.getenv("ALLOWED_HOSTS", "").split(",")
     if host.strip()
 ]
+
+# Merge both lists without duplicates
+ALLOWED_HOSTS = list(set(DEFAULT_ALLOWED_HOSTS + env_hosts))
 
 # Applications
 INSTALLED_APPS = [
