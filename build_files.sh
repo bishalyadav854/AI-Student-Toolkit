@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# Exit immediately if a command exits with a non-zero status
 set -e
 
-# Install project dependencies
-python3 -m pip install -r requirements.txt
+# Install packages using --break-system-packages for PEP 668 compatibility in Vercel containers
+python3 -m pip install -r requirements.txt --break-system-packages
 
-# Collect static files into the directory defined in vercel.json
+# Collect static files into staticfiles/
 python3 manage.py collectstatic --noinput --clear
